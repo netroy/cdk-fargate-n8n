@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "env": {
+    "node": true,
+    "es2020": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "@typescript-eslint/tslint"
+  ],
+  "rules": {
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "@typescript-eslint/no-extra-non-null-assertion": 0,
+    "@typescript-eslint/no-non-null-assertion": 0
+  },
+  "ignorePatterns": [
+    "**/cdk.out/*.*",
+    ".yarn/**"
+  ]
+}
