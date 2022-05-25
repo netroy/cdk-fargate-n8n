@@ -1,13 +1,14 @@
-# Welcome to your CDK TypeScript project
+# Serverless n8n on AWS Fargate
 
-This is a blank project for CDK development with TypeScript.
+This project builds a Cloudformation Stack using [AWS CDK](https://aws.amazon.com/cdk/) to run an instance of [n8n](https://n8n.io/).
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+The database is provisioned on [RDS](https://aws.amazon.com/rds/), and the service containers run on [Fargate](https://aws.amazon.com/fargate/)
 
-## Useful commands
+To deploy this stack, make you sure you have `node` and `yarn` installed, and then then run
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+- `yarn` to install all the dependencies
+- `yarn cdk deploy` to create the stack
+
+Once the deployment is done, you can either go to the public ip assigned to the launched container, or look in the logs for the tunnel URL.
+
+To tear down the stack, simply run `yarn cdk destroy`
