@@ -1,5 +1,7 @@
 # Serverless n8n on AWS Fargate
 
+[![Deploy n8n on AWS fargate](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://eu-central-1.console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=N8N&templateURL=https%3A%2F%2Fdeploy-n8n.s3.eu-central-1.amazonaws.com%2Fn8n.yaml)
+
 This project builds a Cloudformation Stack using [AWS CDK](https://aws.amazon.com/cdk/) to run an instance of [n8n](https://n8n.io/).
 
 The database is provisioned on [RDS](https://aws.amazon.com/rds/), and the service containers run on [Fargate](https://aws.amazon.com/fargate/)
