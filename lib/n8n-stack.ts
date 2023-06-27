@@ -316,14 +316,14 @@ export class N8NStack extends Stack {
         targetGroupName: serviceName,
         protocol: ApplicationProtocol.HTTP,
         port,
-        priority: serviceName === 'main' ? 10 : 20,
+        priority: serviceName === 'webhook' ? 10 : 20,
         conditions: [
           ListenerCondition.hostHeaders([this.domainName]),
           ...(serviceName === 'webhook'
             ? [
               ListenerCondition.pathPatterns([
                 '/webhook/*',
-                '/webhook-test/*',
+                '/webhook-waiting/*',
               ]),
             ]
             : []),
