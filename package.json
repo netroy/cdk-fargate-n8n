@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "synthesize": "cdk synthesize --version-reporting false --path-metadata false"
   },
   "devDependencies": {
     "@types/node": "18.16.13",
