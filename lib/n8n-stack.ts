@@ -174,7 +174,7 @@ export class N8NStack extends Stack {
       engine: 'redis',
       engineVersion: '7.0',
       autoMinorVersionUpgrade: false,
-      cacheNodeType: 'cache.t4g.small',
+      cacheNodeType: 'cache.t4g.medium',
       numCacheNodes: 1,
       cacheSubnetGroupName: redisSubnetGroup.ref,
       vpcSecurityGroupIds: [this.securityGroups.redis.securityGroupId],
