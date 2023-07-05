@@ -299,7 +299,7 @@ export class N8NStack extends Stack {
     const service = new FargateService(this, `Service-${serviceName}`, {
       serviceName: `n8n-${serviceName}`,
       cluster: this.ecsCluster,
-      desiredCount: serviceName === 'main' ? 1 : 2, // TODO: auto-scale workers
+      desiredCount: serviceName === 'main' ? 1 : serviceName === 'webhook' ? 4 : 10, // TODO: auto-scale workers
       taskDefinition,
       securityGroups: [this.securityGroups.app],
       vpcSubnets: {
