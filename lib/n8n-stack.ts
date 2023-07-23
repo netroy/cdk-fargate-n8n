@@ -158,8 +158,8 @@ export class N8NStack extends Stack {
       credentials: Credentials.fromSecret(this.secrets.database),
       removalPolicy: RemovalPolicy.DESTROY,
       instanceType: InstanceType.of(
-        InstanceClass.M5,
-        InstanceSize.LARGE
+        InstanceClass.T4G,
+        InstanceSize.MEDIUM
       ),
     })
 
@@ -245,15 +245,15 @@ export class N8NStack extends Stack {
         family: `n8n-${serviceName}`,
         taskRole: this.taskRole,
         executionRole: this.taskRole,
-        cpu: 1024,
-        memoryLimitMiB: 2048,
+        cpu: 512,
+        memoryLimitMiB: serviceName === 'main' ? 1024 : 2048,
       }
     )
 
     // TODO: how do we persist the filesystem between restarts
     taskDefinition.addContainer(`n8n-${serviceName}`, {
       image: ContainerImage.fromRegistry('n8nio/n8n:0.236.0'),
-      command: ['n8n', ...(serviceName === 'main' ? ['start'] : serviceName === 'worker' ? ['worker', '--concurrency=100'] : [serviceName])],
+      command: ['n8n', ...(serviceName === 'main' ? ['start'] : serviceName === 'worker' ? ['worker', '--concurrency=20'] : [serviceName])],
       environment: {
         N8N_BASIC_AUTH_ACTIVE: 'false',
         N8N_DIAGNOSTICS_ENABLED: 'true',
@@ -299,7 +299,7 @@ export class N8NStack extends Stack {
     const service = new FargateService(this, `Service-${serviceName}`, {
       serviceName: `n8n-${serviceName}`,
       cluster: this.ecsCluster,
-      desiredCount: serviceName === 'main' ? 1 : serviceName === 'webhook' ? 4 : 10, // TODO: auto-scale workers
+      desiredCount: serviceName === 'main' ? 1 : serviceName === 'webhook' ? 1 : 2, // TODO: auto-scale workers
       taskDefinition,
       securityGroups: [this.securityGroups.app],
       vpcSubnets: {
