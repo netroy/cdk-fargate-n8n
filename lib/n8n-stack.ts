@@ -21,6 +21,7 @@ import {
   FargateTaskDefinition,
   ICluster,
 } from 'aws-cdk-lib/aws-ecs'
+import { FileSystem } from 'aws-cdk-lib/aws-efs'
 import { CfnCacheCluster, CfnSubnetGroup } from 'aws-cdk-lib/aws-elasticache'
 import {
   ApplicationLoadBalancer,
@@ -30,7 +31,7 @@ import {
   ListenerCondition,
   Protocol,
 } from 'aws-cdk-lib/aws-elasticloadbalancingv2'
-import { IRole, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam'
+import { IRole, PolicyStatement, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam'
 import { ILogGroup, LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs'
 import {
   Credentials,
@@ -56,6 +57,7 @@ interface N8NStackProps {
 }
 
 export class N8NStack extends Stack {
+  private readonly vpc: Vpc
   private readonly domainName: string
   private readonly ecsCluster: ICluster
   private readonly database: IDatabaseInstance
@@ -96,7 +98,7 @@ export class N8NStack extends Stack {
       validation: CertificateValidation.fromDns(hostedZone),
     })
 
-    const vpc = new Vpc(this, 'VPC', {
+    const vpc = this.vpc = new Vpc(this, 'VPC', {
       vpcName: 'n8n',
       maxAzs: 2,
       natGateways: 2,
@@ -250,12 +252,10 @@ export class N8NStack extends Stack {
       }
     )
 
-    // TODO: how do we persist the filesystem between restarts
-    taskDefinition.addContainer(`n8n-${serviceName}`, {
+    const container = taskDefinition.addContainer(`n8n-${serviceName}`, {
       image: ContainerImage.fromRegistry('n8nio/n8n:1.0.4'),
       command: [...(serviceName === 'main' ? ['start'] : serviceName === 'worker' ? ['worker', '--concurrency=20'] : [serviceName])],
       environment: {
-        N8N_BASIC_AUTH_ACTIVE: 'false',
         N8N_DIAGNOSTICS_ENABLED: 'true',
         DB_TYPE: 'postgresdb',
         DB_POSTGRESDB_HOST: this.database.dbInstanceEndpointAddress,
@@ -296,6 +296,52 @@ export class N8NStack extends Stack {
       ],
     })
 
+    let fileSystem: FileSystem | undefined = undefined
+    if (serviceName === 'main') {
+      fileSystem = new FileSystem(this, 'FileSystem', { vpc: this.vpc })
+      const efsAccessPoint = fileSystem.addAccessPoint('AccessPoint', {
+        createAcl: {
+          ownerUid: '1000',
+          ownerGid: '1000',
+          permissions: '755',
+        },
+        posixUser: {
+          uid: '1000',
+          gid: '1000'
+        }
+      })
+      efsAccessPoint.node.addDependency(fileSystem)
+
+      this.taskRole.addToPrincipalPolicy(new PolicyStatement({
+        actions: [
+          'elasticfilesystem:ClientMount',
+          'elasticfilesystem:ClientWrite',
+          'elasticfilesystem:ClientRootAccess'
+        ],
+        resources: [
+          efsAccessPoint.accessPointArn,
+          fileSystem.fileSystemArn
+        ]
+      }))
+
+      taskDefinition.addVolume({
+        name: 'Persistance',
+        efsVolumeConfiguration: {
+          fileSystemId: fileSystem.fileSystemId,
+          transitEncryption: 'ENABLED',
+          authorizationConfig: {
+            accessPointId: efsAccessPoint.accessPointId,
+          }
+        },
+      })
+
+      container.addMountPoints({
+        readOnly: false,
+        containerPath: '/home/node/.n8n',
+        sourceVolume: 'Persistance'
+      })
+    }
+
     const service = new FargateService(this, `Service-${serviceName}`, {
       serviceName: `n8n-${serviceName}`,
       cluster: this.ecsCluster,
@@ -310,6 +356,7 @@ export class N8NStack extends Stack {
     service.connections.allowTo(this.securityGroups.redis, Port.tcp(6379))
     service.connections.allowTo(this.securityGroups.database, Port.tcp(5432))
     service.connections.allowFromAnyIpv4(Port.tcp(port))
+    fileSystem?.connections.allowDefaultPortFrom(service)
 
     if (serviceName !== 'worker') {
       this.lbListener.addTargets(`n8n-${serviceName}`, {
