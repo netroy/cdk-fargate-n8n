@@ -252,8 +252,8 @@ export class N8NStack extends Stack {
 
     // TODO: how do we persist the filesystem between restarts
     taskDefinition.addContainer(`n8n-${serviceName}`, {
-      image: ContainerImage.fromRegistry('n8nio/n8n:0.236.0'),
-      command: ['n8n', ...(serviceName === 'main' ? ['start'] : serviceName === 'worker' ? ['worker', '--concurrency=20'] : [serviceName])],
+      image: ContainerImage.fromRegistry('n8nio/n8n:1.0.4'),
+      command: [...(serviceName === 'main' ? ['start'] : serviceName === 'worker' ? ['worker', '--concurrency=20'] : [serviceName])],
       environment: {
         N8N_BASIC_AUTH_ACTIVE: 'false',
         N8N_DIAGNOSTICS_ENABLED: 'true',
