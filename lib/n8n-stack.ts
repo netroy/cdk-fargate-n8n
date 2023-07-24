@@ -1,4 +1,4 @@
-import { Duration, RemovalPolicy, Stack } from 'aws-cdk-lib'
+import { CfnParameter, Duration, RemovalPolicy, Stack } from 'aws-cdk-lib'
 import {
   Certificate,
   CertificateValidation,
@@ -51,14 +51,13 @@ const databaseName = 'n8n'
 const port = 5678
 
 interface N8NStackProps {
-  region: string;
-  domainName: string;
-  hostedZoneId: string;
+  region?: string;
 }
 
 export class N8NStack extends Stack {
   private readonly vpc: Vpc
   private readonly domainName: string
+  private readonly hostedZoneId: string
   private readonly ecsCluster: ICluster
   private readonly database: IDatabaseInstance
   private readonly redis: CfnCacheCluster
@@ -81,20 +80,31 @@ export class N8NStack extends Stack {
   constructor(scope: Construct, id: string, props: N8NStackProps) {
     super(scope, id, {
       env: {
-        region: props.region,
+        region: props.region || 'eu-central-1',
       },
     })
 
-    this.domainName = props.domainName
+    const domainName = new CfnParameter(this, 'DomainName', {
+      type: 'String',
+      description: 'The domain name that would point to the n8n instance',
+    })
+
+    const hostedZoneId = new CfnParameter(this, 'HostedZoneId', {
+      type: 'String',
+      description: 'The Route53 hosted zone to manage DNS entries',
+    })
+
+    this.domainName = domainName.valueAsString
+    this.hostedZoneId = hostedZoneId.valueAsString
 
     const hostedZone = HostedZone.fromHostedZoneAttributes(this, 'HostedZone', {
-      zoneName: props.domainName,
-      hostedZoneId: props.hostedZoneId,
+      zoneName: this.domainName,
+      hostedZoneId: this.hostedZoneId,
     })
 
     const certificate = new Certificate(this, 'Certificate', {
       certificateName: 'n8n',
-      domainName: props.domainName,
+      domainName: this.domainName,
       validation: CertificateValidation.fromDns(hostedZone),
     })
 
@@ -207,7 +217,7 @@ export class N8NStack extends Stack {
       })
 
     new ARecord(this, 'ALBRecord', {
-      recordName: props.domainName,
+      recordName: this.domainName,
       zone: hostedZone,
       target: {
         aliasTarget: new LoadBalancerTarget(loadBalancer),
