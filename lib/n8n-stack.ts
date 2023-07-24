@@ -296,51 +296,51 @@ export class N8NStack extends Stack {
       ],
     })
 
-    let fileSystem: FileSystem | undefined = undefined
-    if (serviceName === 'main') {
-      fileSystem = new FileSystem(this, 'FileSystem', { vpc: this.vpc })
-      const efsAccessPoint = fileSystem.addAccessPoint('AccessPoint', {
-        createAcl: {
-          ownerUid: '1000',
-          ownerGid: '1000',
-          permissions: '755',
-        },
-        posixUser: {
-          uid: '1000',
-          gid: '1000'
-        }
-      })
-      efsAccessPoint.node.addDependency(fileSystem)
+    // let fileSystem: FileSystem | undefined = undefined
+    // if (serviceName === 'main') {
+    //   fileSystem = new FileSystem(this, 'FileSystem', { vpc: this.vpc })
+    //   const efsAccessPoint = fileSystem.addAccessPoint('AccessPoint', {
+    //     createAcl: {
+    //       ownerUid: '1000',
+    //       ownerGid: '1000',
+    //       permissions: '755',
+    //     },
+    //     posixUser: {
+    //       uid: '1000',
+    //       gid: '1000'
+    //     }
+    //   })
+    //   efsAccessPoint.node.addDependency(fileSystem)
 
-      this.taskRole.addToPrincipalPolicy(new PolicyStatement({
-        actions: [
-          'elasticfilesystem:ClientMount',
-          'elasticfilesystem:ClientWrite',
-          'elasticfilesystem:ClientRootAccess'
-        ],
-        resources: [
-          efsAccessPoint.accessPointArn,
-          fileSystem.fileSystemArn
-        ]
-      }))
+    //   this.taskRole.addToPrincipalPolicy(new PolicyStatement({
+    //     actions: [
+    //       'elasticfilesystem:ClientMount',
+    //       'elasticfilesystem:ClientWrite',
+    //       'elasticfilesystem:ClientRootAccess'
+    //     ],
+    //     resources: [
+    //       efsAccessPoint.accessPointArn,
+    //       fileSystem.fileSystemArn
+    //     ]
+    //   }))
 
-      taskDefinition.addVolume({
-        name: 'Persistance',
-        efsVolumeConfiguration: {
-          fileSystemId: fileSystem.fileSystemId,
-          transitEncryption: 'ENABLED',
-          authorizationConfig: {
-            accessPointId: efsAccessPoint.accessPointId,
-          }
-        },
-      })
+    //   taskDefinition.addVolume({
+    //     name: 'Persistance',
+    //     efsVolumeConfiguration: {
+    //       fileSystemId: fileSystem.fileSystemId,
+    //       transitEncryption: 'ENABLED',
+    //       authorizationConfig: {
+    //         accessPointId: efsAccessPoint.accessPointId,
+    //       }
+    //     },
+    //   })
 
-      container.addMountPoints({
-        readOnly: false,
-        containerPath: '/home/node/.n8n',
-        sourceVolume: 'Persistance'
-      })
-    }
+    //   container.addMountPoints({
+    //     readOnly: false,
+    //     containerPath: '/home/node/.n8n',
+    //     sourceVolume: 'Persistance'
+    //   })
+    // }
 
     const service = new FargateService(this, `Service-${serviceName}`, {
       serviceName: `n8n-${serviceName}`,
@@ -356,7 +356,7 @@ export class N8NStack extends Stack {
     service.connections.allowTo(this.securityGroups.redis, Port.tcp(6379))
     service.connections.allowTo(this.securityGroups.database, Port.tcp(5432))
     service.connections.allowFromAnyIpv4(Port.tcp(port))
-    fileSystem?.connections.allowDefaultPortFrom(service)
+    // fileSystem?.connections.allowDefaultPortFrom(service)
 
     if (serviceName !== 'worker') {
       this.lbListener.addTargets(`n8n-${serviceName}`, {
