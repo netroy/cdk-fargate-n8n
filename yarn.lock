@@ -19,10 +19,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.165":
-  version: 2.0.166
-  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.166"
-  checksum: d286c3d9e30d5acf6e3eef820bba74a87d4ff8e052183166702f22a615c0eed19471408df798d92208b12c8b8ecbaaa6cbe2b8b2729ec10c6446b5ef2081af37
+"@aws-cdk/asset-node-proxy-agent-v6@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@aws-cdk/asset-node-proxy-agent-v6@npm:2.0.1"
+  checksum: 5d011a554e71212662e32ff5d9187a1733a07d5424bdedfef2f43e7a6075d4b5f316d696867cc5dcd9ed1a11731b0d6b3ae41872c454796c326983ab382e05d0
   languageName: node
   linkType: hard
 
@@ -270,12 +270,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/source-map-support@npm:0.5.6":
-  version: 0.5.6
-  resolution: "@types/source-map-support@npm:0.5.6"
+"@types/source-map-support@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@types/source-map-support@npm:0.5.7"
   dependencies:
     source-map: ^0.6.0
-  checksum: b2b52b3e4901e52df30ebd23056885a352462c0d6fd73418e793684665a7602168e7c337241f0391562e8c1051ff37cbcb9b7d775990ee1f2a0d8a6ffa2cb22a
+  checksum: 6da844f0b8333a1789dd27ad7bb33b9bcb41159939a94451738a8f7a1e1fd69169aa6e2dda51ba8f61753c57ead159331330c996b1d672abc2e33d6991b38bf1
   languageName: node
   linkType: hard
 
@@ -587,13 +587,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk-lib@npm:2.88.0":
-  version: 2.88.0
-  resolution: "aws-cdk-lib@npm:2.88.0"
+"aws-cdk-lib@npm:2.96.1":
+  version: 2.96.1
+  resolution: "aws-cdk-lib@npm:2.96.1"
   dependencies:
     "@aws-cdk/asset-awscli-v1": ^2.2.200
     "@aws-cdk/asset-kubectl-v20": ^2.1.2
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.165
+    "@aws-cdk/asset-node-proxy-agent-v6": ^2.0.1
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^11.1.1
@@ -606,13 +606,13 @@ __metadata:
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: cdf03295f4526a5e37bd945fdde04200abc817c64acc398682815d093dfaeb431643d0350bf75780a966064f1cb2f2fc16710aeba8dd07a74376996d33c47f04
+  checksum: 2fac4404192d7c2f97ccfc51194d0b9008d8886817cd20cac268012963e33ebdb7e788c686a58e9b2c1fed0009b3e593458fa27ae500c7ad0f04831e2baab8e8
   languageName: node
   linkType: hard
 
-"aws-cdk@npm:2.88.0":
-  version: 2.88.0
-  resolution: "aws-cdk@npm:2.88.0"
+"aws-cdk@npm:2.96.1":
+  version: 2.96.1
+  resolution: "aws-cdk@npm:2.96.1"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -620,7 +620,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: 86142c234294fd0f4fdabbfd4cf40581ac59286cc1331fe6b676b48ef77f2c50cd0e71be4e40d17b8579f4a43ccdf2321fabbf1803ecc20a7cf1fd942c69f99f
+  checksum: 72a614d2340b5f020861d1d2a9aef6aad75c21043d2cfc44092424db6f4792e3bdfd5b51a6727b04cda0ddaeeac135578b3dd314ee9d0876587e00e9c34f475a
   languageName: node
   linkType: hard
 
@@ -718,19 +718,19 @@ __metadata:
   resolution: "cdk-fargate-n8n@workspace:."
   dependencies:
     "@types/node": 18.16.13
-    "@types/source-map-support": 0.5.6
+    "@types/source-map-support": 0.5.7
     "@typescript-eslint/eslint-plugin": 5.59.6
     "@typescript-eslint/eslint-plugin-tslint": 5.59.6
     "@typescript-eslint/parser": 5.59.6
-    aws-cdk: 2.88.0
-    aws-cdk-lib: 2.88.0
-    constructs: 10.2.69
+    aws-cdk: 2.96.1
+    aws-cdk-lib: 2.96.1
+    constructs: 10.2.70
     eslint: 8.40.0
     eslint-config-standard: 17.0.0
     source-map-support: 0.5.21
     ts-node: 10.9.1
     tslint: 6.1.3
-    typescript: 5.1.6
+    typescript: 5.2.2
   bin:
     cdk-fargate-n8n: bin/n8n.js
   languageName: unknown
@@ -833,10 +833,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"constructs@npm:10.2.69":
-  version: 10.2.69
-  resolution: "constructs@npm:10.2.69"
-  checksum: 8e72083abf8cc860abace9fd2a551a5eef30dc130cb5fabff30614329e977771e8e7a0bfd7a26784de42ae0a1904ffe4f16f765994a2f948b94787927da09436
+"constructs@npm:10.2.70":
+  version: 10.2.70
+  resolution: "constructs@npm:10.2.70"
+  checksum: 8649ed2c95cb0107d389249285229a2d6594cd36a24af2c106b25630cc4f649c2e628f237ce8da1f26454742ed23cc7f1fcfeab9c3a6592180a48848aa5bf82d
   languageName: node
   linkType: hard
 
@@ -2525,23 +2525,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.1.6":
-  version: 5.1.6
-  resolution: "typescript@npm:5.1.6"
+"typescript@npm:5.2.2":
+  version: 5.2.2
+  resolution: "typescript@npm:5.2.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: b2f2c35096035fe1f5facd1e38922ccb8558996331405eb00a5111cc948b2e733163cc22fab5db46992aba7dd520fff637f2c1df4996ff0e134e77d3249a7350
+  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@5.1.6#~builtin<compat/typescript>":
-  version: 5.1.6
-  resolution: "typescript@patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=7ad353"
+"typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
+  version: 5.2.2
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 21e88b0a0c0226f9cb9fd25b9626fb05b4c0f3fddac521844a13e1f30beb8f14e90bd409a9ac43c812c5946d714d6e0dee12d5d02dfc1c562c5aacfa1f49b606
+  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
   languageName: node
   linkType: hard
 
