@@ -5,24 +5,24 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@aws-cdk/asset-awscli-v1@npm:^2.2.165":
-  version: 2.2.179
-  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.179"
-  checksum: f5c54d818264af6b68e6f424c5543d697d20c80364f0bc78801072d1ef1759448dbc6fbc6f118893c143cad4093f0dd61b9bc131efe8172f810e1d7b463a5ed2
+"@aws-cdk/asset-awscli-v1@npm:^2.2.200":
+  version: 2.2.200
+  resolution: "@aws-cdk/asset-awscli-v1@npm:2.2.200"
+  checksum: 0de92336887957e188092dc62a9b8fa87b8e602b8678faa361cc12680cedde46a2592dc1c73b33a0d2067e1a000d2afa762b2a14c07fb47b3fcad288a24ce7ed
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-kubectl-v20@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "@aws-cdk/asset-kubectl-v20@npm:2.1.1"
-  checksum: f5883fae7b6d3d17e5125560a6efa5065d8b319c11ea6639caa68e315427c4fa266433db04b1a776cf12ccc8c8f8e9a3dfc0ac8cc3c0e73545f80b07808281e2
+"@aws-cdk/asset-kubectl-v20@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "@aws-cdk/asset-kubectl-v20@npm:2.1.2"
+  checksum: 987bce26f54ba64596b7d15adf0c09603814ed56f06b498d17dc4b8859f4708662c9c48f88bba2810d8fac04cf84b8f3e51806c93cf65aeb6148ad76bc250f84
   languageName: node
   linkType: hard
 
-"@aws-cdk/asset-node-proxy-agent-v5@npm:^2.0.139":
-  version: 2.0.150
-  resolution: "@aws-cdk/asset-node-proxy-agent-v5@npm:2.0.150"
-  checksum: e44f8ffed4973e8b14ceddc45f2d8f29416475a6f18843697df6cbe9246acd4ebecccc70e6c3cb322685a664102fe0d730bcb47f15486643deb47f29f7bebd4b
+"@aws-cdk/asset-node-proxy-agent-v6@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@aws-cdk/asset-node-proxy-agent-v6@npm:2.0.1"
+  checksum: 5d011a554e71212662e32ff5d9187a1733a07d5424bdedfef2f43e7a6075d4b5f316d696867cc5dcd9ed1a11731b0d6b3ae41872c454796c326983ab382e05d0
   languageName: node
   linkType: hard
 
@@ -270,12 +270,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/source-map-support@npm:0.5.6":
-  version: 0.5.6
-  resolution: "@types/source-map-support@npm:0.5.6"
+"@types/source-map-support@npm:0.5.7":
+  version: 0.5.7
+  resolution: "@types/source-map-support@npm:0.5.7"
   dependencies:
     source-map: ^0.6.0
-  checksum: b2b52b3e4901e52df30ebd23056885a352462c0d6fd73418e793684665a7602168e7c337241f0391562e8c1051ff37cbcb9b7d775990ee1f2a0d8a6ffa2cb22a
+  checksum: 6da844f0b8333a1789dd27ad7bb33b9bcb41159939a94451738a8f7a1e1fd69169aa6e2dda51ba8f61753c57ead159331330c996b1d672abc2e33d6991b38bf1
   languageName: node
   linkType: hard
 
@@ -587,13 +587,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"aws-cdk-lib@npm:2.79.1":
-  version: 2.79.1
-  resolution: "aws-cdk-lib@npm:2.79.1"
+"aws-cdk-lib@npm:2.96.1":
+  version: 2.96.1
+  resolution: "aws-cdk-lib@npm:2.96.1"
   dependencies:
-    "@aws-cdk/asset-awscli-v1": ^2.2.165
-    "@aws-cdk/asset-kubectl-v20": ^2.1.1
-    "@aws-cdk/asset-node-proxy-agent-v5": ^2.0.139
+    "@aws-cdk/asset-awscli-v1": ^2.2.200
+    "@aws-cdk/asset-kubectl-v20": ^2.1.2
+    "@aws-cdk/asset-node-proxy-agent-v6": ^2.0.1
     "@balena/dockerignore": ^1.0.2
     case: 1.6.3
     fs-extra: ^11.1.1
@@ -601,18 +601,18 @@ __metadata:
     jsonschema: ^1.4.1
     minimatch: ^3.1.2
     punycode: ^2.3.0
-    semver: ^7.5.0
+    semver: ^7.5.4
     table: ^6.8.1
     yaml: 1.10.2
   peerDependencies:
     constructs: ^10.0.0
-  checksum: 76c6fc9b95e3b460073c119d9db99dd48526333be7505b75d5b9831a44afdf2c23d2acb3d026ad3eafdd8967637f246dded305e60e4e844e1c7a63f74382a299
+  checksum: 2fac4404192d7c2f97ccfc51194d0b9008d8886817cd20cac268012963e33ebdb7e788c686a58e9b2c1fed0009b3e593458fa27ae500c7ad0f04831e2baab8e8
   languageName: node
   linkType: hard
 
-"aws-cdk@npm:2.79.1":
-  version: 2.79.1
-  resolution: "aws-cdk@npm:2.79.1"
+"aws-cdk@npm:2.96.1":
+  version: 2.96.1
+  resolution: "aws-cdk@npm:2.96.1"
   dependencies:
     fsevents: 2.3.2
   dependenciesMeta:
@@ -620,7 +620,7 @@ __metadata:
       optional: true
   bin:
     cdk: bin/cdk
-  checksum: d35964d5ffabd9b10fbb8cc82bbd9fc2b18dd5157a9309d4560c73f25a81db61f5f2871964d72b4e2d16ec04904f4dc426915ac3cda0131ca1516bf436d214d3
+  checksum: 72a614d2340b5f020861d1d2a9aef6aad75c21043d2cfc44092424db6f4792e3bdfd5b51a6727b04cda0ddaeeac135578b3dd314ee9d0876587e00e9c34f475a
   languageName: node
   linkType: hard
 
@@ -718,19 +718,19 @@ __metadata:
   resolution: "cdk-fargate-n8n@workspace:."
   dependencies:
     "@types/node": 18.16.13
-    "@types/source-map-support": 0.5.6
+    "@types/source-map-support": 0.5.7
     "@typescript-eslint/eslint-plugin": 5.59.6
     "@typescript-eslint/eslint-plugin-tslint": 5.59.6
     "@typescript-eslint/parser": 5.59.6
-    aws-cdk: 2.79.1
-    aws-cdk-lib: 2.79.1
-    constructs: 10.2.28
+    aws-cdk: 2.96.1
+    aws-cdk-lib: 2.96.1
+    constructs: 10.2.70
     eslint: 8.40.0
     eslint-config-standard: 17.0.0
     source-map-support: 0.5.21
     ts-node: 10.9.1
     tslint: 6.1.3
-    typescript: 5.0.4
+    typescript: 5.2.2
   bin:
     cdk-fargate-n8n: bin/n8n.js
   languageName: unknown
@@ -833,10 +833,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"constructs@npm:10.2.28":
-  version: 10.2.28
-  resolution: "constructs@npm:10.2.28"
-  checksum: 04045a17752a3eb6398ec3ce3229c58dcb3beb9f9c3df0d4ea585b473737dea2b192f076399905878ff13a3fd093b8b54fc20617eb90492eee6515c056ed4575
+"constructs@npm:10.2.70":
+  version: 10.2.70
+  resolution: "constructs@npm:10.2.70"
+  checksum: 8649ed2c95cb0107d389249285229a2d6594cd36a24af2c106b25630cc4f649c2e628f237ce8da1f26454742ed23cc7f1fcfeab9c3a6592180a48848aa5bf82d
   languageName: node
   linkType: hard
 
@@ -2193,14 +2193,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.5.0":
-  version: 7.5.1
-  resolution: "semver@npm:7.5.1"
+"semver@npm:^7.5.4":
+  version: 7.5.4
+  resolution: "semver@npm:7.5.4"
   dependencies:
     lru-cache: ^6.0.0
   bin:
     semver: bin/semver.js
-  checksum: d16dbedad53c65b086f79524b9ef766bf38670b2395bdad5c957f824dcc566b624988013564f4812bcace3f9d405355c3635e2007396a39d1bffc71cfec4a2fc
+  checksum: 12d8ad952fa353b0995bf180cdac205a4068b759a140e5d3c608317098b3575ac2f1e09182206bf2eb26120e1c0ed8fb92c48c592f6099680de56bb071423ca3
   languageName: node
   linkType: hard
 
@@ -2525,23 +2525,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.0.4":
-  version: 5.0.4
-  resolution: "typescript@npm:5.0.4"
+"typescript@npm:5.2.2":
+  version: 5.2.2
+  resolution: "typescript@npm:5.2.2"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 82b94da3f4604a8946da585f7d6c3025fff8410779e5bde2855ab130d05e4fd08938b9e593b6ebed165bda6ad9292b230984f10952cf82f0a0ca07bbeaa08172
+  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@5.0.4#~builtin<compat/typescript>":
-  version: 5.0.4
-  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=7ad353"
+"typescript@patch:typescript@5.2.2#~builtin<compat/typescript>":
+  version: 5.2.2
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=7ad353"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 6a1fe9a77bb9c5176ead919cc4a1499ee63e46b4e05bf667079f11bf3a8f7887f135aa72460a4c3b016e6e6bb65a822cb8689a6d86cbfe92d22cc9f501f09213
+  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
   languageName: node
   linkType: hard
 
